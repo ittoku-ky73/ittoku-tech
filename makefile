@@ -10,6 +10,16 @@ clone_repo:
 setup:
 	docker-compose build
 	docker-compose run --rm api rails db:setup
+	docker-compose run --rm web npm install
 
 run:
 	docker-compose up
+
+db_postgres:
+	docker-compose exec db psql app_development -U postgres
+
+api_bash:
+	docker-compose exec api bash
+
+web_bash:
+	docker-compose exec web bash
