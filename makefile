@@ -15,6 +15,9 @@ setup:
 run:
 	docker-compose up
 
+down:
+	docker-compose down
+
 db_postgres:
 	docker-compose exec db psql app_development -U postgres
 
@@ -23,3 +26,26 @@ api_bash:
 
 web_bash:
 	docker-compose exec web bash
+
+TEST_FILE    = docker-compose.test.yml
+TEST_PROJECT = ittoku-tech-test
+
+test_setup:
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) build
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) run --rm web npm install
+
+test_run:
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) up
+
+test:
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api rails test
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web npm test
+
+test_api_bash:
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api bash
+
+test_web_bash:
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web bash
+
+test_down:
+	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) down
