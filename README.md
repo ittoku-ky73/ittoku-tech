@@ -9,7 +9,7 @@
 1. `make clone_repo`
 2. `make setup`
 3. `make run`
-3. open http://localhost:3000
+4. open http://localhost:8080
 
 ### テスト環境
 
