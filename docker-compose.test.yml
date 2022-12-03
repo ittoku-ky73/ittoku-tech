@@ -14,6 +14,7 @@ services:
     build: ./api/
     environment:
       RAILS_ENV: test
+      DOMAIN: api.ittoku-tech.com
     ports:
       - "8000:8000"
     volumes:
@@ -26,6 +27,7 @@ services:
     build: ./blog/
     environment:
       NODE_ENV: test
+      DOMAIN: blog.ittoku-tech.com
     ports:
       - "8080:8080"
     volumes:
