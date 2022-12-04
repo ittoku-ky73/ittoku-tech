@@ -12,7 +12,7 @@ setup:
 	docker-compose run --rm api rails db:setup
 	docker-compose run --rm web npm install
 
-run:
+up:
 	docker-compose up
 
 down:
@@ -30,22 +30,22 @@ web_bash:
 TEST_FILE    = docker-compose.test.yml
 TEST_PROJECT = ittoku-tech-test
 
-test_setup:
+setup_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) build
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) run --rm web npm install
 
-test_run:
+up_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) up
 
 test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api rails test
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web npm test
 
-test_api_bash:
+api_bash_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api bash
 
-test_web_bash:
+web_bash_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web bash
 
-test_down:
+down_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) down
