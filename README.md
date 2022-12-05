@@ -9,7 +9,8 @@
 1. `make clone_repo`
 2. `make setup`
 3. `make run`
-4. open http://localhost:8080
+4. open http://localhost:3000
+5. open http://localhost:8000
 
 ### テスト環境
 
@@ -18,5 +19,6 @@
 1. `make down`
 2. `make test_setup`
 3. `make test_run`
-4. `make test`
-5. `make test_down`
+4. `make api_test`
+5. `make web_test`
+6. `make test_down`

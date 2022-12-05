@@ -37,8 +37,10 @@ setup_test:
 up_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) up
 
-test:
+api_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api rails test
+
+web_test:
 	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web npm test
 
 api_bash_test:
