@@ -11,7 +11,9 @@ services:
 
   api:
     container_name: api-ittoku-tech-test
-    build: ./api/
+    build: 
+      context: ./api
+      dockerfile: "Dockerfile.dev"
     environment:
       RAILS_ENV: test
       DOMAIN: api.ittoku-tech.com
@@ -24,7 +26,9 @@ services:
 
   web:
     container_name: blog-ittoku-tech-test
-    build: ./blog/
+    build: 
+      context: ./blog
+      dockerfile: "Dockerfile.dev"
     environment:
       NODE_ENV: test
       DOMAIN: blog.ittoku-tech.com

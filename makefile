@@ -7,47 +7,52 @@ clone_repo:
 	git clone $(BLOG_REPO)
 	mv blog-ittoku-tech blog
 
+DEV_FILE    = docker-compose.dev.yml
+DEV_PROJECT = ittoku-tech
+DEV_COMPOSE = docker-compose -f $(DEV_FILE) -p $(DEV_PROJECT)
+
 setup:
-	docker-compose build
-	docker-compose run --rm api rails db:setup
-	docker-compose run --rm web npm install
+	$(DEV_COMPOSE) build
+	$(DEV_COMPOSE) run --rm api rails db:setup
+	$(DEV_COMPOSE) run --rm web npm install
 
 up:
-	docker-compose up
+	$(DEV_COMPOSE) up
 
 down:
-	docker-compose down
+	$(DEV_COMPOSE) down
 
 db_postgres:
-	docker-compose exec db psql app_development -U postgres
+	$(DEV_COMPOSE) exec db psql app_development -U postgres
 
 api_bash:
-	docker-compose exec api bash
+	$(DEV_COMPOSE) exec api bash
 
 web_bash:
-	docker-compose exec web bash
+	$(DEV_COMPOSE) exec web bash
 
 TEST_FILE    = docker-compose.test.yml
 TEST_PROJECT = ittoku-tech-test
+TEST_COMPOSE = docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT)
 
 setup_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) build
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) run --rm web npm install
+	$(TEST_COMPOSE) build
+	$(TEST_COMPOSE) run --rm web npm install
 
 up_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) up
+	$(TEST_COMPOSE) up
 
 api_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api rails test
+	$(TEST_COMPOSE) exec api rails test
 
 web_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web npm test
+	$(TEST_COMPOSE) exec web npm test
 
 api_bash_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec api bash
+	$(TEST_COMPOSE) exec api bash
 
 web_bash_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) exec web bash
+	$(TEST_COMPOSE) exec web bash
 
 down_test:
-	docker-compose -f $(TEST_FILE) -p $(TEST_PROJECT) down
+	$(TEST_COMPOSE) down
