@@ -33,7 +33,7 @@ services:
       NODE_ENV: test
       DOMAIN: blog.ittoku-tech.com
     ports:
-      - "8080:8080"
+      - "3000:3000"
     volumes:
       - ./blog:/web
     depends_on:
