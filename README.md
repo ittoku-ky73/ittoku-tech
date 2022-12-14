@@ -20,15 +20,14 @@
 
 1. `make clone_repo`
 2. `make setup`
-3. `make run`
-4. open http://localhost:3000
-5. open http://localhost:8000
+3. `make up`
+4. open [blog](http://localhost:3000)
+5. open [api](http://localhost:8000)
 
 テスト環境を構築します。そのためにまず開発環境を落とす必要があります。その後に構築といった流れになります。テストを終える時も落としておきましょう。
 
-1. `make down`
-2. `make test_setup`
-3. `make test_run`
-4. `make api_test`
-5. `make web_test`
-6. `make test_down`
+1. `make setup_test`
+2. `make up_test`
+3. `make api_test`
+4. `make web_test`
+5. `make down_test`
