@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Blog web application">
+		<meta name="keywords" content="ittoku-tech, Blog">
+		<meta name="author" content="ittoku-ky73">
+		<title>ittoku tech documentation</title>
+		<!-- normalize.css -->
+		<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+		<!-- google fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<!-- fonts - Roboto -->
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+		<!-- fonts - Noto Sans Japanese -->
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+		<!-- mycss -->
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js" defer=""></script>
+	</head>
+	<body>
+		<h1>ittoku-techのドキュメント</h1>
+		<p>
+			ここでは、プロジェクトittoku-techの機能について詳しく書いていきます。
+		</p>
+		<h2>記事 - Post</h2>
+		<p>
+			記事を投稿、編集、削除することができる。<br />
+			マークダウン形式で書くこともできる。
+		</p>
+		<h3>データベースのカラム</h3>
+		<ul>
+			<li>id</li>
+			<li>title</li>
+			<li>content</li>
+			<li>created_at</li>
+			<li>updated_at</li>
+		</ul>
+		<h3>バリデーション</h3>
+		<dl>
+			<dt>title</dt>
+			<dd>
+			必須。記事のタイトルを入れる。記事の最も目立つ部分。<br />
+			最大1000文字まで保存可能。
+			</dd>
+			<dt>content</dt>
+			<dd>
+			必須。記事の内容を入れる。<br />
+			最大100000文字まで保存可能。
+			</dd>
+		</dl>
+		<h3>アクセス方法</h3>
+		<dl>
+			<dt>/posts/list</dt>
+			<dd>
+			記事一覧ページ。<br />
+			20件ずつ記事を見ることができる。<br />
+			タイトルをクリックすることで、詳細ページに移動ができる。
+			</dd>
+			<dt>/posts/:id</dt>
+			<dd>
+			記事詳細ページ。<br />
+			IDに一致する記事の詳細が表示される。<br />
+			マークダウン形式に対応している。<br />
+			このページで記事の編集、削除をすることができる。
+			</dd>
+			<dt>/posts/create</dt>
+			<dd>
+			記事作成ページ。<br />
+			記事を作成するためのエディターが表示される。<br />
+			作成ボタンを押すと、不正がなければ記事を作成することができる。
+			</dd>
+			<dt>/posts/create (POST)</dt>
+			<dd>
+			サーバーに記事を作成するようリクエストする。<br />
+			記事作成に成功すれば、記事作成、作成した記事のページへリダイレクトする。<br />
+			記事作成に失敗すれば、記事作成せず、エラーメッセージとともに元のページに戻る。
+			</dd>
+			<dt>/posts/:id/update</dt>
+			<dd>
+			記事編集ページ。<br />
+			IDに一致する記事の編集をすることができる。<br />
+			編集ボタンを押すと、不正がなければ記事を編集することができる。
+			</dd>
+			<dt>/posts/:id/update (POST)</dt>
+			<dd>
+			サーバーにIDに一致した記事を編集するようリクエストする。<br />
+			記事編集に成功すれば、記事編集、編集した記事のページへリダイレクトする。<br />
+			記事編集に失敗すれば、記事編集せず、エラーメッセージとともに元のページに戻る。
+			</dd>
+			<dt>/posts/:id/delete (POST)</dt>
+			<dd>
+			サーバーにIDに一致した記事を削除するようリクエストする。<br />
+			記事削除に成功すれば、記事削除、記事一覧ページへリダイレクトする。<br />
+			記事削除に失敗すれば、記事削除せず、エラーメッセージとともに元のページに戻る。だがほとんどの場合、成功する。
+			</dd>
+		</dl>
+		<h2>コメント - Comment</h2>
+		<p>
+			記事に対してコメントを作成、削除することができる。<br />
+			コメントは記事の詳細ページに置かれている。<br />
+			記事が削除されると関連するコメントも一緒に削除される。
+		</p>
+		<h3>データベースのカラム</h3>
+		<ul>
+			<li>id</li>
+			<li>content</li>
+			<li>post_id</li>
+			<li>created_at</li>
+			<li>updated_at</li>
+		</ul>
+		<h3>バリデーション</h3>
+		<dl>
+			<dt>content</dt>
+			<dd>
+			必須。ここにコメントの内容を入れる。<br />
+			最大1000文字まで保存可能。
+			</dd>
+			<dt>post_id</dt>
+			<dd>
+			必須。コメントをする記事のIDを入れる。
+			</dd>
+		</dl>
+		<h3>アクセス方法</h3>
+		<dl>
+			<dt>/posts/:id/comments</dt>
+			<dd>
+			サーバーにIDに一致した記事のコメントを作成するようリクエストする。<br />
+			コメント作成に成功すれば、コメント作成、記事詳細ページへリダイレクトする。<br />
+			コメント作成に失敗すれば、コメント作成せず、エラーメッセージとともに元のページに戻る。
+			</dd>
+			<dt>/posts/:post_id/comments/:comment_id</dt>
+			<dd>
+			サーバーにpost_idに一致した記事の中のcomment_idに一致したコメントを削除するようリクエストする。<br />
+			コメント削除に成功すれば、コメント削除、記事詳細ページへリダイレクトする。<br />
+			コメント削除に失敗すれば、コメント削除せず、エラーメッセージとともに元のページに戻る。
+			</dd>
+		</dl>
+	</body>
+</html>
