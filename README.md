@@ -11,8 +11,8 @@
 
 **リポジトリ**
 
-- api (Ruby on Rails): https://github.com/ittoku-ky73/api-ittoku-tech
-- blog (Node/Express): https://github.com/ittoku-ky73/blog-ittoku-tech
+- api (Ruby on Rails): https://github.com/ittokun/api-ittoku-tech
+- blog (Node/Express): https://github.com/ittokun/blog-ittoku-tech
 
 ### 環境構築
 
